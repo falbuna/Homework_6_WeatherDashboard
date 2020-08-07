@@ -1,13 +1,26 @@
-                const City = "San Diego"
+function displayweatherinfo(){
 
-                const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + City + "&appid=3cc36befffcdde3fee1a588394a435ef";
+const City = localStorage.getItem('city')
 
-                    $.ajax({
-                        url: queryURL,
-                        method: "GET"
-                    }).then(function(response){
-                        console.log(response);
-                        $('.city').html('<h3>' + response.name + ' (Date) </h3>');
-                        const tempF = (response.main.temp - 273.15) * 1.80 + 32;
-                        $('.temp').text('Temperature: ' + tempF.toFixed(2) + ' F');
-                    })
+const WeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + City + ",US&appid=3cc36befffcdde3fee1a588394a435ef";
+
+    $.ajax({
+    url: WeatherURL,
+    method: "GET"
+    }).then(function(response){
+        console.log(response);
+        $('.city').html('<h3>' + response.name + ' (Date) </h3>');
+        const tempF = (response.main.temp - 273.15) * 1.80 + 32;
+        $('.temp').text('Temperature: ' + tempF.toFixed(2) + ' F');
+    })
+}
+
+$('.btn').on('click', function(event){
+    event.preventDefault();
+    // console.log("I've been clicked!");
+    const cityinput = $('#city-input').val().trim();
+    // console.log(cityinput)
+    localStorage.setItem('city', cityinput)
+
+    displayweatherinfo();
+    })
