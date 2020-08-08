@@ -1,3 +1,10 @@
+initial();
+
+function initial(){
+    const storedCity = localStorage.getItem('city');
+    displayweatherinfo();
+}
+
 function displayweatherinfo(){
 
 const City = localStorage.getItem('city')
