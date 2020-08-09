@@ -5,7 +5,7 @@ const TodaysDate = moment().format('MM/DD/YYYY');
 initial();
 
 function initial(){
-    const storedCity = localStorage.getItem('city');
+
     displayweatherinfo();
 }
 
@@ -24,13 +24,15 @@ const WeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + City +
         const tempF = (response.main.temp - 273.15) * 1.80 + 32;
 
         const Weathericon = response.weather[0].icon;
-        const lati = response.coord.lat;
-        const longi = response.coord.lon;
+        console.log(Weathericon)
 
-        $('.city').html('<h3>' + response.name + ' (' + TodaysDate + ')' + '</h3>');
+        $('.city').html('<h3>' + response.name + ' (' + TodaysDate + ')' + '<img id="wIcon" src="https://openweathermap.org/img/wn/' + Weathericon + '@2x.png" />' + '</h3>');
         $('.temp').text('Temperature: ' + tempF.toFixed(2) + ' F');
         $('.humidity').text('Humidity: ' + response.main.humidity + '%');
         $('.windspd').text('Wind Speed: ' + response.wind.speed + 'MPH');
+        
+        const lati = response.coord.lat;
+        const longi = response.coord.lon;
 
     const UVurl = "https://api.openweathermap.org/data/2.5/uvi?appid=3cc36befffcdde3fee1a588394a435ef&lon=" + longi + "&lat=" + lati;
 
@@ -52,9 +54,9 @@ $('.btn').on('click', function(event){
 
     displayweatherinfo();
 
-    const cityBtnDiv = $('<button>');
+    const cityBtnDiv = $('<div>');
     cityBtnDiv.text(cityinput);
-    cityBtnDiv.addClass("city-btn");
-    $("#city-buttons").prepend(cityBtnDiv);
+    cityBtnDiv.addClass("city-div");
+    $("#city-div").prepend(cityBtnDiv);
     
     });
