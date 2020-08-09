@@ -26,9 +26,9 @@ const City = localStorage.getItem('city')
         const Weathericon = response.weather[0].icon;
 
         $('.city').html('<h3>' + response.name + ' (' + TodaysDate + ')' + '<img id="wIcon" src="https://openweathermap.org/img/wn/' + Weathericon + '@2x.png" />' + '</h3>');
-        $('.temp').text('Temperature: ' + tempF.toFixed(2) + ' F');
+        $('.temp').html('Temperature: ' + tempF.toFixed(2) + ' &#8457');
         $('.humidity').text('Humidity: ' + response.main.humidity + '%');
-        $('.windspd').text('Wind Speed: ' + response.wind.speed + 'MPH');
+        $('.windspd').text('Wind Speed: ' + response.wind.speed + ' MPH');
         
         const lati = response.coord.lat;
         const longi = response.coord.lon;
@@ -40,7 +40,6 @@ const City = localStorage.getItem('city')
             method: "GET"
             }).then(function(response){
                 const UVvalue = response.value;
-                console.log(response)
                     if (UVvalue < 3){
                         $('.uvindex').html('UV Index: ' + '<span class="border rounded" style="background-color: green; color: white">' + UVvalue + '</span>');
                     }
@@ -51,8 +50,18 @@ const City = localStorage.getItem('city')
                         $('.uvindex').html('UV Index: ' + '<span class="border rounded" style="background-color: yellow; color: black">' + UVvalue + '</span>');
                     }
             });
-    
-    });
+
+            // const forcastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + City + ",US&appid=3cc36befffcdde3fee1a588394a435ef";
+            const forcastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lati + "&lon=" + longi + "&exclude=current,minutely,hourly,&appid=3cc36befffcdde3fee1a588394a435ef";
+
+
+            $.ajax({
+                url: forcastURL,
+                method: "GET"
+            }).then(function(response){
+                console.log(response);
+            })
+        });
 };
 
 $('.btn').on('click', function(event){
