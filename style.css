@@ -13,6 +13,14 @@ form {
     background-color: white;
 }
 
+#main-display{
+    
+}
+
 #wIcon {
     height: 50px;
+}
+
+span {
+    padding: 5px;
 }

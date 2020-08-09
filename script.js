@@ -13,7 +13,7 @@ function displayweatherinfo(){
 
 const City = localStorage.getItem('city')
 
-const WeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + City + ",US&appid=3cc36befffcdde3fee1a588394a435ef";
+    const WeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + City + ",US&appid=3cc36befffcdde3fee1a588394a435ef";
 
     $.ajax({
     url: WeatherURL,
@@ -24,7 +24,6 @@ const WeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + City +
         const tempF = (response.main.temp - 273.15) * 1.80 + 32;
 
         const Weathericon = response.weather[0].icon;
-        console.log(Weathericon)
 
         $('.city').html('<h3>' + response.name + ' (' + TodaysDate + ')' + '<img id="wIcon" src="https://openweathermap.org/img/wn/' + Weathericon + '@2x.png" />' + '</h3>');
         $('.temp').text('Temperature: ' + tempF.toFixed(2) + ' F');
@@ -34,16 +33,27 @@ const WeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + City +
         const lati = response.coord.lat;
         const longi = response.coord.lon;
 
-    const UVurl = "https://api.openweathermap.org/data/2.5/uvi?appid=3cc36befffcdde3fee1a588394a435ef&lon=" + longi + "&lat=" + lati;
+            const UVurl = "https://api.openweathermap.org/data/2.5/uvi?appid=3cc36befffcdde3fee1a588394a435ef&lon=" + longi + "&lat=" + lati;
 
-    $.ajax({
-        url: UVurl,
-        method: "GET"
-    }).then(function(response){
-        $('.uvindex').text('UV Index: ' + response.value);
-    })
-    })
-}
+            $.ajax({
+            url: UVurl,
+            method: "GET"
+            }).then(function(response){
+                const UVvalue = response.value;
+                console.log(response)
+                    if (UVvalue < 3){
+                        $('.uvindex').html('UV Index: ' + '<span class="border rounded" style="background-color: green; color: white">' + UVvalue + '</span>');
+                    }
+                    if (UVvalue > 6){
+                        $('.uvindex').html('UV Index: ' + '<span class="border rounded" style="background-color: red; color: white">' + UVvalue + '</span>');
+                    }
+                    else {
+                        $('.uvindex').html('UV Index: ' + '<span class="border rounded" style="background-color: yellow; color: black">' + UVvalue + '</span>');
+                    }
+            });
+    
+    });
+};
 
 $('.btn').on('click', function(event){
     event.preventDefault();
@@ -57,6 +67,5 @@ $('.btn').on('click', function(event){
     const cityBtnDiv = $('<div>');
     cityBtnDiv.text(cityinput);
     cityBtnDiv.addClass("city-div");
-    $("#city-div").prepend(cityBtnDiv);
-    
-    });
+    $("#city-div").prepend(cityBtnDiv);    
+});
