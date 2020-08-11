@@ -99,7 +99,7 @@ const City = localStorage.getItem('city')
                 // This will create a div for the Date.
                 const dateDiv = $("<div>");
                 dateDiv.attr('id', 'Date: ' + ForDate);
-                dateDiv.html('<h5>' + ForDate + '</h5>');
+                dateDiv.html('<h6>' + ForDate + '</h6>');
                 dateDiv.addClass('cardDate');
                 // This will append the date to the card Div.
                 cardDiv.append(dateDiv);
@@ -114,7 +114,7 @@ const City = localStorage.getItem('city')
                 const tempDiv = $("<div>");
                 tempDiv.attr('id', 'Temp:' + FortempF);
                 tempDiv.html('Temp: ' + FortempF + ' &#8457')
-                tempDiv.addClass('cardTemp');
+                tempDiv.addClass('cardTemp mb-2');
                 // This will append the temperature to the card Div.
                 cardDiv.append(tempDiv);
                 // This will create a div for the humidity.
@@ -145,8 +145,8 @@ $('.btn').on('click', function(event){
     // A list of the previously searched cities will display
     const cityDiv = $('<div>');
     cityDiv.text(cityinput);
-    cityDiv.addClass("city-div");
-    cityDiv.attr("data-value");
+    cityDiv.addClass("card card-body");
+    cityDiv.attr('id', 'cities');
     $("#city-div").prepend(cityDiv);
 });
 

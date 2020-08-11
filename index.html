@@ -12,23 +12,29 @@
         <title>Weather Dashboard</title>
     </head>
     <body>
+    <div class="row">
         <header class="container col-12">
             <h1>Weather Dashboard</h1>
           </header>
-
+    </div>
+    
     <div class="row">
-        <form class="container col-3 ml-2 mt-3">
+        <!-- This column will container the form for the search input. -->
+        <form class="container col-3 ml2 mt-3">
               <h4>Search for a City:</h4>
                 <div class="input-group">
+                    <!-- The user can search for a city with the input here. -->
                     <input type="text" id="city-input">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type='submit'>Go</button>
                     </div>
                 </div>
                 <br>
+                <!-- The Previously searched cities will display here. -->
                 <div id="city-div"></div>
         </form>
     
+        <!-- The Current Searched Weather will Display here -->
         <div class="container col-8">
             <div class="main-weather" style="border: 1px solid #cecece">
                 <div class="city"></div>
@@ -42,7 +48,8 @@
                 <div class="uvindex mb-3">UV Index: </div>
             </div>
             <div class="container">
-                <h4> 5-Day Forcast:</h4>
+                <!-- This 5-Day Forecast will Display Here -->
+                <h4> 5-Day Forecast:</h4>
                 <div class="row" id="forcastRow">
                 </div>
             </div>

@@ -14,8 +14,8 @@ form {
     margin: 10px;
 }
 
-#city-div {
-    background-color: white;
+.card {
+    padding: 10px;
 }
 
 #wIcon {
