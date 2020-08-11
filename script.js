@@ -69,21 +69,52 @@ const City = localStorage.getItem('city')
                 url: forcastURL,
                 method: "GET"
             }).then(function(response){
-                console.log(response);
+
+                const cards = $("#forcastRow");
 
                 for (let i = 1; i <= 5; i++){
                 let UTCFormat = response.daily[i].dt;
                 const ForDate = moment.unix(UTCFormat).format("MM/DD/YYYY");
 
-                const FortempF = (((response.daily[i].feels_like.day - 273.15) * 1.80 + 32).toFixed(2));
-                const Forhumidity = (response.daily[i].humidity);
+                const ForWIcon = response.daily[i].weather[0].icon;              
                 
-                // console.log(ForDate);
-                // console.log(FortempF)
-                // console.log(Forhumidity)
+                const FortempF = (((response.daily[i].feels_like.day - 273.15) * 1.80 + 32).toFixed(2));
 
-                const forcastDiv = $('<div>');
-                $(".cardDate").text(ForDate);
+                const Forhumidity = (response.daily[i].humidity);
+
+                const cardDiv = $("<div>");
+                cardDiv.addClass("card bg-primary");
+                cardDiv.attr("id", "cards")
+
+                const dateDiv = $("<div>");
+                dateDiv.attr('id', 'Date: ' + ForDate);
+                dateDiv.html('<h5>' + ForDate + '</h5>');
+                dateDiv.addClass('cardDate');
+
+                cardDiv.append(dateDiv);
+
+                const iconDiv = $("<div>");
+                iconDiv.attr('id', 'wIcon');
+                iconDiv.html('<img id="wIcon" src="https://openweathermap.org/img/wn/' + ForWIcon + '@2x.png" />');
+                iconDiv.addClass('cardIcon');
+
+                cardDiv.append(iconDiv);
+
+                const tempDiv = $("<div>");
+                tempDiv.attr('id', 'Temp:' + FortempF);
+                tempDiv.html('Temp: ' + FortempF + ' &#8457')
+                tempDiv.addClass('cardTemp');
+
+                cardDiv.append(tempDiv);
+
+                const humidityDiv = $("<div>");
+                humidityDiv.attr('id', 'Humidity:' + Forhumidity);
+                humidityDiv.html('Humidity: ' + Forhumidity + '%');
+                humidityDiv.addClass('cardHumidity');
+
+                cardDiv.append(humidityDiv);
+
+                cards.append(cardDiv);
 
                 };
             });
