@@ -15,9 +15,11 @@ function initial(){
 function displayweatherinfo(){
 
 // The City constant gets pulled from local storage
-const City = localStorage.getItem('city')
+const City = localStorage.getItem('city');
+
     // This is the URL for the Open Weather Map API that will change depending on the city input.
     const WeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + City + ",US&appid=3cc36befffcdde3fee1a588394a435ef";
+
     // The Ajax for the Open Weather API
     $.ajax({
     url: WeatherURL,
@@ -25,15 +27,19 @@ const City = localStorage.getItem('city')
     }).then(function(response){
         // This constant will change the temperature from Kelvin to Fahrenheit.
         const tempF = (response.main.temp - 273.15) * 1.80 + 32;
+
         // This constant will get the value of the weather icon.
         const Weathericon = response.weather[0].icon;
 
         // This will get the name of the city from the Ajax response and the icon from the open weather map website. The date is retrieved from moment.js from the beginning of this doc.
         $('.city').html('<h3>' + response.name + ' (' + TodaysDate + ')' + '<img id="wIcon" src="https://openweathermap.org/img/wn/' + Weathericon + '@2x.png" />' + '</h3>');
+
         // This will get the temperature from the tempf equation to display in degrees Fahrenheit.
         $('.temp').html('Temperature: ' + tempF.toFixed(2) + ' &#8457');
+
         // The humidity is pulled from the Ajax response and inserted to the html.
         $('.humidity').text('Humidity: ' + response.main.humidity + '%');
+
         // The windspeed is pulled from the Ajax resposne and inserted to the html.
         $('.windspd').text('Wind Speed: ' + response.wind.speed + ' MPH');
         
@@ -80,22 +86,30 @@ const City = localStorage.getItem('city')
             }).then(function(response){
                 // This is the Row for the 5-Day Forcast that will display as cards.
                 const cards = $("#forcastRow");
+
                 // This is the for loop to loop through the array that is generated from the Ajax request response.
                 for (let i = 1; i <= 5; i++){
+
                 // The will get the time in UTC format from the Ajax Reponse.
                 let UTCFormat = response.daily[i].dt;
+
                 // This will use moment.js to convert the time from UTC to Standard Date Format.
                 const ForDate = moment.unix(UTCFormat).format("MM/DD/YYYY");
+
                 // This will store the weather icon from the Ajax response.
-                const ForWIcon = response.daily[i].weather[0].icon;              
+                const ForWIcon = response.daily[i].weather[0].icon;
+
                 // This will convert the temperature from Kelvin to Fahrenheit.
                 const FortempF = (((response.daily[i].feels_like.day - 273.15) * 1.80 + 32).toFixed(2));
+
                 // This will get the humidity from teh Ajax response.
                 const Forhumidity = (response.daily[i].humidity);
+
                 // This will create a div for the cards for the 5-day Forecast.
                 const cardDiv = $("<div>");
-                cardDiv.addClass("card bg-primary");
+                cardDiv.addClass("card bg-primary col-sm-2");
                 cardDiv.attr("id", "cards")
+
                 // This will create a div for the Date.
                 const dateDiv = $("<div>");
                 dateDiv.attr('id', 'Date: ' + ForDate);
@@ -103,29 +117,37 @@ const City = localStorage.getItem('city')
                 dateDiv.addClass('cardDate');
                 // This will append the date to the card Div.
                 cardDiv.append(dateDiv);
+
                 // This will create a div for the weather icon.
                 const iconDiv = $("<div>");
                 iconDiv.attr('id', 'wIcon');
                 iconDiv.html('<img id="wIcon" src="https://openweathermap.org/img/wn/' + ForWIcon + '@2x.png" />');
                 iconDiv.addClass('cardIcon');
+
                 // This will append the icon to the card Div.
                 cardDiv.append(iconDiv);
+
                 // This will create a div for the temperature.
                 const tempDiv = $("<div>");
                 tempDiv.attr('id', 'Temp:' + FortempF);
                 tempDiv.html('Temp: ' + FortempF + ' &#8457')
                 tempDiv.addClass('cardTemp mb-2');
+
                 // This will append the temperature to the card Div.
                 cardDiv.append(tempDiv);
+
                 // This will create a div for the humidity.
                 const humidityDiv = $("<div>");
                 humidityDiv.attr('id', 'Humidity:' + Forhumidity);
                 humidityDiv.html('Humidity: ' + Forhumidity + '%');
                 humidityDiv.addClass('cardHumidity');
+
                 // This will append the humidity to the card Div.
                 cardDiv.append(humidityDiv);
+
                 // The cards will be appeneded to the 5-Day Forcast Row.
                 cards.append(cardDiv);
+                
                 };
             });};
         });

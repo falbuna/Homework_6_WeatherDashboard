@@ -1,4 +1,4 @@
-# Homework_6_WeatherDashboard
+# Homework 6 WeatherDashboard
 
 Homework for Week 6
 
@@ -13,9 +13,20 @@ My motivation for taking on this project was to test my knowledge and skills on 
 ## Usage
 
 When the user first enters the webpage, this is what they will see.
+
 ![Weather Dashboard with no weather information](https://github.com/falbuna/Homework_6_WeatherDashboard/blob/master/Assets/FirstView.PNG)
 
+When the user enters a city in the search bar, they will get the City Name, Date, Temperature, Humidity, Wind Speed, UV Index, and a 5-Day Forecast.
 
+![Weather Dashboard with San Diego Weather Information on (08/10/2020).] (https://github.com/falbuna/Homework_6_WeatherDashboard/blob/master/Assets/FirstSearch.PNG)
+
+As the user searches for more cities, they will be placed underneath the search bard.
+
+![Weather Dashboard with additional cities searched.](https://github.com/falbuna/Homework_6_WeatherDashboard/blob/master/Assets/MoreSearches.PNG)
+
+When the user returns to the page or refreshes, the last searched city will display.
+
+![Weather Dashboard with infromation for Denver.] (https://github.com/falbuna/Homework_6_WeatherDashboard/blob/master/Assets/LastSearched.PNG)
 
 ## How I Coded the App
 

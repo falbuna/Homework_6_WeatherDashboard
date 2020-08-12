@@ -7,6 +7,12 @@
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         />
+        <link
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+        crossorigin="anonymous"
+      />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" href="style.css" />
         <title>Weather Dashboard</title>
@@ -20,13 +26,13 @@
     
     <div class="row">
         <!-- This column will container the form for the search input. -->
-        <form class="container col-3 ml2 mt-3">
+        <form class="container col-4 ml2 mt-3">
               <h4>Search for a City:</h4>
                 <div class="input-group">
                     <!-- The user can search for a city with the input here. -->
-                    <input type="text" id="city-input" placeholder="Enter City Here!">
+                    <input type="text" id="city-input" class="col-sm-9 ml-2" placeholder="Enter City Here!">
                     <div class="input-group-append">
-                        <button class="btn btn-primary" type='submit'>Go</button>
+                        <button class="btn btn-primary fas fa-search" class="col-sm-1" type='submit'></button>
                     </div>
                 </div>
                 <br>
@@ -35,7 +41,7 @@
         </form>
     
         <!-- The Current Searched Weather will Display here -->
-        <div class="container col-8">
+        <div class="container col-7">
             <div class="main-weather" style="border: 1px solid #cecece">
                 <div class="city"></div>
                 <div class="icon"></div>
