@@ -20,7 +20,7 @@ When the user enters a city in the search bar, they will get the City Name, Date
 
 ![Weather Dashboard with San Diego Weather Information](https://github.com/falbuna/Homework_6_WeatherDashboard/blob/master/Assets/FirstSearch.PNG)
 
-As the user searches for more cities, they will be placed underneath the search bar.
+As the user searches for more cities, they will be placed underneath the search bar. If the user clicks any of the cities under the search bar, the page will display the weather information for that city.
 
 ![Weather Dashboard with additional cities searched.](https://github.com/falbuna/Homework_6_WeatherDashboard/blob/master/Assets/MoreSearches.PNG)
 
