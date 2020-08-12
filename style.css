@@ -39,15 +39,15 @@ span {
 @media screen and (max-width: 992px){
 
 h6 {
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .cardTemp {
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .cardHumidity {
-    font-size: 10px;
+    font-size: 12px;
 }
 }
 
@@ -55,14 +55,14 @@ h6 {
 @media screen and (max-width: 767px){
 
 h6 {
-    font-size: 8px;
+    font-size: 10px;
 }
 
 .cardTemp {
-    font-size: 8px;
+    font-size: 10px;
 }
 
 .cardHumidity {
-    font-size: 8px;
+    font-size: 10px;
 }
 }

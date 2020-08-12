@@ -159,7 +159,6 @@ $('.btn').on('click', function(event){
     event.preventDefault();
     const cityinput = $('#city-input').val().trim();
     localStorage.setItem('city', cityinput);
-
     Cities.push(cityinput);
 
     displayweatherinfo();
@@ -172,10 +171,14 @@ $('.btn').on('click', function(event){
     $("#city-div").prepend(cityDiv);
 });
 
+// This will display the city when one of the previously searched cities is clicked.
 $('#city-div').on('click', function(event){
     event.preventDefault();
     let citytarget = event.target;
-    console.log("I've been clicked!");
-    const cityinput = $(citytarget).attr('value');
-    console.log(citytarget);
+    const cityinput = $(citytarget).text();
+    localStorage.setItem('city', cityinput);
+    Cities.push(cityinput);
+
+    displayweatherinfo();
+
 });
